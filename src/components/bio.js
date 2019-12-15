@@ -38,7 +38,7 @@ function Bio() {
               }}
             />
             <p>
-              Written by <strong>{author}</strong> who is Node.js Core Collaborator, Web Engineer, OSS developer.
+              Written by <strong>{author}</strong> who is Node.js Core Collaborator, Web developer, OSS developer.
               {` `}
               <a href={`https://twitter.com/${social.twitter}`}>
                 Please follow me on Twitter.
