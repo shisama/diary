@@ -8,14 +8,14 @@ const today = dayjs();
 const year = today.year().toString();
 const month = (today.month() + 1).toString();
 const date = today.date().toString();
-const filedir = path.join(blogRoot, year, month);
+const filedir = path.join(blogRoot, today.format('YYYY/MM'));
 
 if (!fs.existsSync(filedir)) {
   fs.mkdirSync(filedir, {
     recursive: true
   });
 }
-const filepath = path.join(filedir, date) + '.md';
+const filepath = path.join(filedir, today.format('DD')) + '.md';
 if (fs.existsSync(filepath)) {
   throw new Error(`${filepath} has been already created!`);
 }
