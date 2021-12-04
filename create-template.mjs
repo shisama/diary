@@ -23,7 +23,7 @@ if (fs.existsSync(filepath)) {
 const template = 
 `---
 date: ${today.format('YYYY-MM-DD')}
-title: ${today.format('MMMM d, YYYY')}
+title: ${today.format('MMMM D, YYYY')}
 description: false
 ---
 
