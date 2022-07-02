@@ -1,35 +1,29 @@
-import * as fs from 'fs';
-import * as path from 'path';
-import dayjs from 'dayjs';
+import * as fs from "fs"
+import * as path from "path"
+import dayjs from "dayjs"
 
-const __dirname = path.dirname((new URL(import.meta.url)).pathname);
-const blogRoot = path.resolve(__dirname, 'content/blog');
-const today = dayjs();
-const year = today.year().toString();
-const month = (today.month() + 1).toString();
-const date = today.date().toString();
-const filedir = path.join(blogRoot, today.format('YYYY/MM'));
+const __dirname = path.dirname(new URL(import.meta.url).pathname)
+const blogRoot = path.resolve(__dirname, "content/blog")
+const targetDate =
+  process.argv.length > 2 ? dayjs(process.argv[2], "YYYY-MM-DD") : dayjs()
+const filedir = path.join(blogRoot, targetDate.format("YYYY/MM"))
 
 if (!fs.existsSync(filedir)) {
   fs.mkdirSync(filedir, {
-    recursive: true
-  });
+    recursive: true,
+  })
 }
-const filepath = path.join(filedir, today.format('DD')) + '.md';
+const filepath = path.join(filedir, targetDate.format("DD")) + ".md"
 if (fs.existsSync(filepath)) {
-  throw new Error(`${filepath} has been already created!`);
+  throw new Error(`${filepath} has been already created!`)
 }
 
-const template = 
-`---
-date: ${today.format('YYYY-MM-DD')}
-title: ${today.format('MMMM D, YYYY')}
+const template = `---
+date: ${targetDate.format("YYYY-MM-DD")}
+title: ${targetDate.format("MMMM D, YYYY")}
 description: false
 ---
 
 `
 
-fs.writeFileSync(filepath, template);
-
-
-
+fs.writeFileSync(filepath, template)
